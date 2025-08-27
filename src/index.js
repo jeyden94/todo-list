@@ -1,16 +1,7 @@
 import "./styles.css";
-import { greeting } from "./greeting.js";
-import odinImage from "./images/odin.png";
+import { createTask } from "./create-task.js"
 
-if (process.env.NODE_ENV !== 'production') {
-    console.log('Looks like we are in development mode!');
-}
 
-console.log(greeting);
-
-const image = document.createElement("img");
-image.src = odinImage;
-   
-document.body.appendChild(image);
-
+const testTask = createTask("Dinner","Cook spaghetti for dinner tonight", "Today", "High", "Personal")
+console.log(testTask)
  
