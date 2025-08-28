@@ -7,3 +7,15 @@ export function storeInLocalStorage(task) {
         string
     }
 }
+
+export function getFromLocalStorage(storageKey) {
+    let tasks = JSON.parse(localStorage.getItem(storageKey))
+
+    return {
+        tasks
+    }
+}
+
+export function clearLocalStorage() {
+    localStorage.clear()
+}
