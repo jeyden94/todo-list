@@ -1,15 +1,12 @@
-export function storeInLocalStorage(task) {
-    let string = JSON.stringify(task)
+export function loadTasksFromStorage() {
+    
+    let tasks = []
 
-    localStorage.setItem("test", string)
+    let allTaskKeys = Object.keys(localStorage)
 
-    return {
-        string
+    for (let key in allTaskKeys) {
+        tasks.push(JSON.parse(localStorage.getItem(`${allTaskKeys[key]}`)))
     }
-}
-
-export function getFromLocalStorage(storageKey) {
-    let tasks = JSON.parse(localStorage.getItem(storageKey))
 
     return {
         tasks
@@ -18,4 +15,15 @@ export function getFromLocalStorage(storageKey) {
 
 export function clearLocalStorage() {
     localStorage.clear()
+}
+
+export function storeInLocalStorage(task) {
+    let taskDetails = JSON.stringify(task)
+    let taskId = crypto.randomUUID()
+
+    localStorage.setItem(taskId, taskDetails)
+
+    return {
+        taskId
+    }
 }

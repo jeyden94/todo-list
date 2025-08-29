@@ -1,38 +1,12 @@
 import "./styles.css";
-import { createTask } from "./create-task.js"
-import { storeInLocalStorage, getFromLocalStorage, clearLocalStorage } from "./use-local-storage.js"
-import { updateTaskArray } from "./update-task-array.js"
+import { addNewTask } from "./create-task.js"
+import { loadTasksFromStorage, clearLocalStorage } from "./use-local-storage.js"
 
-const taskStorageKey = "test"
+addNewTask("Dinner","Cook spaghetti for dinner tonight", "Today", "High", "Personal")
 
-function openTasks() {
-    // Initialize task array
-    let allTasks = getFromLocalStorage(taskStorageKey)
+let allTasks = loadTasksFromStorage()
 
-    console.log(allTasks)
-    // New Task
-
-    // let testTask1 = createTask("Dinner","Cook spaghetti for dinner tonight", "Today", "High", "Personal")
-    // let testTask2 = createTask("Breakfast","Cook eggs for breakfast", "Today", "High", "Personal")
-
-    // updateTaskArray(allTasks, testTask1)
-
-    // console.log(allTasks)
-
-    // updateTaskArray(allTasks, testTask2)
-
-    // console.log(allTasks)
-
-
-    // let testString = storeInLocalStorage(allTasks)
-    // console.log(testString)
-    return {
-        allTasks
-    }
-}
-
-openTasks()
+console.log(allTasks.tasks)
 
 window.clear = clearLocalStorage
-window.showTasks = console.log(openTasks)
 
