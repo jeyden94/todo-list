@@ -1,10 +1,13 @@
 import "./styles.css";
 import { addNewTask } from "./create-task.js"
 import { loadTasksFromStorage, clearLocalStorage } from "./use-local-storage.js"
+import { assignDOMElements } from "./assign-dom-elements.js"
 
 addNewTask("Dinner","Cook spaghetti for dinner tonight", "Today", "High", "Personal")
 
 let allTasks = loadTasksFromStorage()
+
+assignDOMElements()
 
 console.log(allTasks.tasks)
 
