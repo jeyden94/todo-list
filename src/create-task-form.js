@@ -1,4 +1,7 @@
-export function assignDOMElements() {
+import { Task } from "./task-controller.js"
+import { formattedDate } from "./dates.js"
+
+export function enableNewTaskForm() {
     const createTaskBtn = document.getElementById("new-task-btn")
     const openTaskForm = createTaskBtn.addEventListener("click", openNewTaskForm)
 
@@ -9,19 +12,29 @@ export function assignDOMElements() {
 
 function openNewTaskForm() {
 
-    const formWrapper = document.querySelector(".form-wrapper")
+    const taskFormWrapper = document.querySelector(".task-form-wrapper")
 
-    console.log("hi")
+    const newTask = new Task("", "", "", formattedDate, "");
     
-    const newTask = document.createElement("form")
+    newTask.storeLocally()
 
-    newTask.innerHTML = `
+    const newTaskForm = document.createElement("form")
+
+    newTaskForm.setAttribute("data-task-id", `${newTask.uniqueTaskId}`)
+
+    newTaskForm.innerHTML = `
+
+    <p>${newTask.uniqueTaskId}</p>
     <label for="title">Title</label>
-    <input type="text" id="title">
-    <label for="description">Description</label>
-    <input type="text" id="description">
+    <input type="text" id="title" placeholder="What do you need to get done?">
+
+    <label for="description">Task Description</label>
+    <textarea id="description" placeholder="What else do you need remember?">
+    </textarea>
+
     <label for="due-date">Due Date</label>
     <input type="date" id="due-date">
+
     <label for="priority">Priority</label>
     <select id="priority" name="priority">
         <button>
@@ -32,6 +45,7 @@ function openNewTaskForm() {
         <option value="medium">Medium</option>
         <option value="high">High</option>
     </select>
+
     <label for="project">Project</label>
     <select id="project" name="project">
         <button>
@@ -40,10 +54,12 @@ function openNewTaskForm() {
         <option value="">Select Project</option>
         <option value="test-project">Test</option>
     </select>
-    <input id="submit-task" type="submit" value="Submit">`
+    <input data-task-id-btn="${newTask.uniqueTaskId}" class="update-task-btn" type="button" value="Update Task">`
 
-    formWrapper.appendChild(newTask)
+    taskFormWrapper.appendChild(newTaskForm)
+    
+    let updateTaskBtn = document.querySelector(`[data-task-id-btn="${newTask.uniqueTaskId}"]`)
 
-
+    updateTaskBtn.addEventListener("click", (e) => console.log(`${newTask.uniqueTaskId}`))
 
 }

@@ -18,7 +18,3 @@ export class Task {
     }
 
 }
-
-// function storeLocallyHelper(task) {
-//     localStorage.setItem(`${task.uniqueTaskId}`, `Title: ${JSON.stringify(task)}`);
-// }
