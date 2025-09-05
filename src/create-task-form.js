@@ -5,10 +5,6 @@ import { formattedDate } from "./dates.js"
 export function enableNewTaskForm() {
     const createTaskBtn = document.getElementById("new-task-btn")
     const openTaskForm = createTaskBtn.addEventListener("click", openNewTaskForm)
-
-    return {
-        openTaskForm
-    }
 }
 
 function openNewTaskForm() {
@@ -25,7 +21,6 @@ function openNewTaskForm() {
 
     newTaskForm.innerHTML = `
 
-    <p>${newTask.uniqueTaskId}</p>
     <label for="title">Title</label>
     <input type="text" id="title" placeholder="What do you need to get done?">
 
@@ -62,14 +57,15 @@ function openNewTaskForm() {
     taskFormWrapper.appendChild(newTaskForm)
     
     let updateTaskBtn = document.querySelector(`[data-task-id-btn="${newTask.uniqueTaskId}"]`)
-    updateTaskBtn.addEventListener("click", (e) => console.log(`Update Task with Id: ${newTask.uniqueTaskId}`))
+    updateTaskBtn.addEventListener("click", () => {
+        console.log(`Update Task with Id: ${newTask.uniqueTaskId}`)
+
+        // Create functionality to route changes to the tasks form to local storage AND update the DOM
+    })
 
     let deleteTaskBtn = document.querySelector(`[data-task-id-btn-delete="${newTask.uniqueTaskId}"]`)
     deleteTaskBtn.addEventListener("click", () => {
-        console.log(`Delete Task with Id: ${newTask.uniqueTaskId}`)
         deleteThisTaskFromLocalStorage(newTask.uniqueTaskId)
-
-        // now, delete the dom element
         clearThisTaskFromTheScreen(taskFormWrapper, newTaskForm)        
     })
 }
