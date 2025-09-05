@@ -54,12 +54,12 @@ function openNewTaskForm() {
         <option value="">Select Project</option>
         <option value="test-project">Test</option>
     </select>
+    
     <input data-task-id-btn="${newTask.uniqueTaskId}" class="update-task-btn" type="button" value="Update Task">`
 
     taskFormWrapper.appendChild(newTaskForm)
     
     let updateTaskBtn = document.querySelector(`[data-task-id-btn="${newTask.uniqueTaskId}"]`)
-
     updateTaskBtn.addEventListener("click", (e) => console.log(`${newTask.uniqueTaskId}`))
 
 }

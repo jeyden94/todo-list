@@ -1,13 +1,10 @@
 import { Project } from "./project-controller.js"
+import { deleteThisProjectFromLocalStorage, clearThisProjectFromTheScreen } from "./delete-cards.js"
 import { formattedDate } from "./dates.js"
 
 export function enableNewProjectForm() {
     const createProjectBtn = document.getElementById("new-project-btn")
     const openProjectForm = createProjectBtn.addEventListener("click", openNewProjectForm)
-
-    return {
-        openProjectForm
-    }
 }
 
 
@@ -40,12 +37,20 @@ function openNewProjectForm() {
         <option value="green">Green</option>
     </select>
     
-    <input data-project-id-btn="${newProject.uniqueProjectId}" class="update-project-btn" type="button" value="Update Project">`
+    <input data-project-id-btn="${newProject.uniqueProjectId}" class="update-project-btn" type="button" value="Update Project">
+    <input data-project-id-btn-delete="${newProject.uniqueProjectId}" class="delete-project-btn" type="button" value="Delete">`
 
     projectFormWrapper.appendChild(newProjectForm)
 
     let updateProjectBtn = document.querySelector(`[data-project-id-btn="${newProject.uniqueProjectId}"]`)
+    updateProjectBtn.addEventListener("click", (e) => console.log(`Update Project with Id: ${newProject.uniqueProjectId}`))
 
-    updateProjectBtn.addEventListener("click", (e) => console.log(`${newProject.uniqueProjectId}`))
+    let deleteProjectBtn = document.querySelector(`[data-project-id-btn-delete="${newProject.uniqueProjectId}"]`)
+    deleteProjectBtn.addEventListener("click", () => {
+        console.log(`Delete Project with Id: ${newProject.uniqueProjectId}`)
+        deleteThisProjectFromLocalStorage(newProject.uniqueProjectId)
 
+        // now, delete the dom element
+        clearThisProjectFromTheScreen(projectFormWrapper, newProjectForm)
+    })
 }
