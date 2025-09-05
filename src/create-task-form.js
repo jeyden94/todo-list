@@ -1,4 +1,5 @@
 import { Task } from "./task-controller.js"
+import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
 import { formattedDate } from "./dates.js"
 
 export function enableNewTaskForm() {
@@ -54,12 +55,21 @@ function openNewTaskForm() {
         <option value="">Select Project</option>
         <option value="test-project">Test</option>
     </select>
-    
-    <input data-task-id-btn="${newTask.uniqueTaskId}" class="update-task-btn" type="button" value="Update Task">`
+
+    <input data-task-id-btn="${newTask.uniqueTaskId}" class="update-task-btn" type="button" value="Update Task">
+    <input data-task-id-btn-delete="${newTask.uniqueTaskId}" class="delete-task-btn" type="button" value="Delete">`
 
     taskFormWrapper.appendChild(newTaskForm)
     
     let updateTaskBtn = document.querySelector(`[data-task-id-btn="${newTask.uniqueTaskId}"]`)
-    updateTaskBtn.addEventListener("click", (e) => console.log(`${newTask.uniqueTaskId}`))
+    updateTaskBtn.addEventListener("click", (e) => console.log(`Update Task with Id: ${newTask.uniqueTaskId}`))
 
+    let deleteTaskBtn = document.querySelector(`[data-task-id-btn-delete="${newTask.uniqueTaskId}"]`)
+    deleteTaskBtn.addEventListener("click", () => {
+        console.log(`Delete Task with Id: ${newTask.uniqueTaskId}`)
+        deleteThisTaskFromLocalStorage(newTask.uniqueTaskId)
+
+        // now, delete the dom element
+        clearThisTaskFromTheScreen(taskFormWrapper, newTaskForm)        
+    })
 }
