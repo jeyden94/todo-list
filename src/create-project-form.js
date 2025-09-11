@@ -1,4 +1,4 @@
-import { Project } from "./project-controller.js"
+import { Project } from "./project-class.js"
 import { deleteThisProjectFromLocalStorage, clearThisProjectFromTheScreen } from "./delete-cards.js"
 
 export function enableNewProjectForm() {

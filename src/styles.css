@@ -15,7 +15,16 @@ body {
 .main-content-wrapper {
   display: grid;
   grid-auto-flow: column;
+  /* debug */
+  border: 1px solid red;
 }
+
+nav {
+  border: 1px solid red;
+}
+
+
+/* Buttons */
 
 .btn-wrapper {
   display: grid;
