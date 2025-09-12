@@ -1,6 +1,6 @@
 import { Task } from "./task-class.js"
 import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
-import { updateThisTaskInLocalStorage } from "./update-cards.js"
+import { updateThisTaskInLocalStorage, updateThisTaskOnTheScreen } from "./update-cards.js"
 import { formattedDate } from "./dates.js"
 
 export function enableNewTaskForm() {
@@ -88,7 +88,7 @@ function openNewTaskForm() {
         Project: ${taskProject}`)
 
         updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
-
+        updateThisTaskOnTheScreen()
         // Create functionality to route changes to the tasks form to local storage AND update the DOM
     })
 

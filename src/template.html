@@ -7,30 +7,36 @@
 </head>
 <body>
     
-    <nav>
-
-        <div class="btn-wrapper">
-            <button id="new-task-btn">Add new task</button>
-            <button id="new-project-btn">Add new project</button>       
-        </div>
-
-    </nav>
-    
-    <div class="side-bar-wrapper">
-        <div class="show-all">Show all tasks</div>
-        <div class="show-by-project">
+    <div class="view-wrapper">
+        <button class="show-all">Show all tasks</button>
+        <button class="show-kanban">Show kanban</button>
+        <button class="show-calendar">Show calendar</button>
+        <div class="filter-by-project">
             <!-- This is where projects pop up every time they are created/updated -->
         </div>
     </div>
 
-    <div class="main-content-wrapper">
-        <div class="task-form-wrapper">
+    <div class="task-view">
+        <div class="kanban-wrapper">
+        </div>
+    </div>
 
+    <div class="create-wrapper">
+
+        <div class="btn-wrapper">
+            <button id="new-task-btn">Add new task</button>
+        </div>
+
+        <div class="task-form-wrapper">
+        </div>
+
+        <div class="btn-wrapper">
+            <button id="new-project-btn">Add new project</button>    
         </div>
 
         <div class="project-form-wrapper">
-
         </div>     
+
     </div>
 
 </body>

@@ -1,6 +1,7 @@
 body {
   background-color: rebeccapurple;
   display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
   justify-content: center;
 
   background: radial-gradient(circle, #22499C, #00277A 50vh);
@@ -8,18 +9,36 @@ body {
   overflow: auto;
   font-family: "JetBrains Mono",monospace;
   color: white;
-  flex-direction: column;
+  
   align-items: center;
+  gap: 10px;
 }
 
-.main-content-wrapper {
-  display: grid;
-  grid-auto-flow: column;
-  /* debug */
+.task-view {
+  height: 95vh;
   border: 1px solid red;
 }
 
-nav {
+.kanban-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 100%;
+  /* debug */
+}
+
+.kanban-section {
+  border: 1px solid green;
+}
+
+.view-wrapper {
+  display: grid;
+  height: 95vh;
+  border: 1px solid red;
+}
+
+.create-wrapper {
+  display: grid;
+  height: 95vh;
   border: 1px solid red;
 }
 
