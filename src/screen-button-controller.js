@@ -18,6 +18,7 @@ export function createUpdateTaskBtn(newTask, source) {
 
         if (source === "new") {
             newTask.storeLocally()
+            updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
             clearThisTaskFromTheScreen(newTask)        
         } else {
             updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
