@@ -12,8 +12,8 @@ export function updateThisTaskInLocalStorage(taskId, taskTitle, taskDescription,
     localStorage.setItem(taskId, updatedTaskObject)
 }
 
-export function updateThisTaskOnTheScreen(taskFormWrapper, newTaskForm) {
-    taskFormWrapper.removeChild(newTaskForm);    
+export function updateThisTaskOnTheScreen() {
+    // taskFormWrapper.removeChild(newTaskForm);    
 } 
 
 export function updateThisProjectInLocalStorage(projectId) {
