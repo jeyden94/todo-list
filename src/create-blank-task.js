@@ -7,8 +7,13 @@ import { createFormFromTask } from "./show-task-as-form.js"
 export const newTaskBtn = document.getElementById("new-task-btn")
 export const createNewTask = newTaskBtn.addEventListener("click", createBlankTask)
 
+const source = "new"
+
 function createBlankTask() {
     const newTask = new Task("", "", "", formattedDate, "");
-    newTask.storeLocally()
-    createFormFromTask(newTask.uniqueTaskId)
+    console.log(newTask.uniqueTaskId)
+    // newTask.storeLocally()
+    // createFormFromTask(newTask.uniqueTaskId, source)
+
+    createFormFromTask(newTask, source)
 }

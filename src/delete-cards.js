@@ -3,7 +3,9 @@ export function deleteThisTaskFromLocalStorage(taskId) {
     localStorage.removeItem(taskId)
 }
 
-export function clearThisTaskFromTheScreen(taskFormWrapper, newTaskForm) {
+export function clearThisTaskFromTheScreen(newTask) {
+    const taskFormWrapper = document.querySelector(`.task-form-wrapper-${newTask.uniqueTaskId}`)
+    const newTaskForm = document.querySelector(`[data-task-id-new="${newTask.uniqueTaskId}"]`)
     taskFormWrapper.removeChild(newTaskForm);    
 } 
 

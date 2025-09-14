@@ -12,6 +12,15 @@ export function updateThisTaskInLocalStorage(taskId, taskTitle, taskDescription,
     localStorage.setItem(taskId, updatedTaskObject)
 }
 
+
+// Update button needs to do different things depending on where the task is showing up
+// the screen (using "source"). If it's in the create section, updating should:
+
+// 1 - route it to local storage for the first time (it should not already be in local
+// storage)
+
+// 2 - remove it from the screen
+
 export function updateThisTaskOnTheScreen() {
     // taskFormWrapper.removeChild(newTaskForm);    
 } 

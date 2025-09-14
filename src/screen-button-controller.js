@@ -1,20 +1,28 @@
 import { updateThisTaskInLocalStorage } from "./update-cards.js"
+import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
 
-export function createUpdateTaskBtn(taskId) {
 
-    const thisTask = JSON.parse(localStorage.getItem(taskId));
+export function createUpdateTaskBtn(newTask, source) {
 
-    let updateTaskBtn = document.querySelector(`[data-task-id-btn="${taskId}"]`)
+    // const thisTask = JSON.parse(localStorage.getItem(taskId));
+
+
+    let updateTaskBtn = document.querySelector(`[data-task-id-btn="${newTask.uniqueTaskId}"]`)
     
     updateTaskBtn.addEventListener("click", () => {
-        let taskTitle = document.getElementById("title").value;
-        let taskDescription = document.getElementById("description").value;
-        let taskDueDate = document.getElementById("due-date").value;
-        let taskPriority = document.getElementById("priority").value;
-        let taskProject = document.getElementById("project").value;
+        let taskTitle = document.getElementById(`title-${newTask.uniqueTaskId}`).value;
+        let taskDescription = document.getElementById(`description-${newTask.uniqueTaskId}`).value;
+        let taskDueDate = document.getElementById(`due-date-${newTask.uniqueTaskId}`).value;
+        let taskPriority = document.getElementById(`priority-${newTask.uniqueTaskId}`).value;
+        let taskProject = document.getElementById(`project-${newTask.uniqueTaskId}`).value;
 
-        updateThisTaskInLocalStorage(taskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
-        
+        if (source === "new") {
+            newTask.storeLocally()
+            clearThisTaskFromTheScreen(newTask)        
+        } else {
+            updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
+        }
+
         // Create functionality to route changes to the tasks form to local storage AND update the DOM
     })
 }

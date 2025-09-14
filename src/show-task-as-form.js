@@ -1,29 +1,40 @@
 import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
 import { createUpdateTaskBtn } from "./screen-button-controller.js";
 
-export function createFormFromTask(taskId) {
+export function createFormFromTask(newTask, source) {
 
-    const thisTask = JSON.parse(localStorage.getItem(taskId));
+    // const source = "new"
 
-    const taskFormWrapper = document.querySelector(".task-form-wrapper")
+    // const thisTask = JSON.parse(localStorage.getItem(taskId));
+    // console.log(thisTask)
+
+    const taskId = newTask.uniqueTaskId;
+
+    // const taskFormParent = document.querySelector(`.${source}-task-wrapper`)
+    const taskFormParent = document.querySelector(`.task-form-wrapper-${source}`)
+
+    const taskFormWrapper = document.createElement(`div`)
+    taskFormWrapper.classList.add(`task-form-wrapper-${taskId}`)
+
+    // const taskFormWrapper = document.querySelector(`.task-form-wrapper`)
 
     const newTaskForm = document.createElement("form")
     
-    newTaskForm.setAttribute("data-task-id", `${taskId}`)
+    newTaskForm.setAttribute(`data-task-id-${source}`, `${taskId}`)
 
     newTaskForm.innerHTML = `
 
     <label for="title">Title</label>
-    <input type="text" id="title" value="${thisTask.title}">
+    <input type="text" id="title-${taskId}" value="${newTask.title}">
 
     <label for="description">Task Description</label>
-    <textarea id="description" value="${thisTask.description}"></textarea>
+    <textarea id="description-${taskId}" value="${newTask.description}"></textarea>
 
     <label for="due-date">Due Date</label>
-    <input type="date" id="due-date">
+    <input type="date" id="due-date-${taskId}">
 
     <label for="priority">Priority</label>
-    <select id="priority" name="priority">
+    <select id="priority-${taskId}" name="priority">
         <button>
             <selectedcontent></selectedcontent>
         </button>
@@ -34,7 +45,7 @@ export function createFormFromTask(taskId) {
     </select>
 
     <label for="project">Project</label>
-    <select id="project" name="project">
+    <select id="project-${taskId}" name="project">
         <button>
             <selectedcontent></selectedcontent>
         </button>
@@ -46,8 +57,9 @@ export function createFormFromTask(taskId) {
     <input data-task-id-btn-delete="${taskId}" class="delete-task-btn" type="button" value="Delete">`
 
     taskFormWrapper.appendChild(newTaskForm)
+    taskFormParent.appendChild(taskFormWrapper)
 
-    createUpdateTaskBtn(taskId)
+    createUpdateTaskBtn(newTask, source)
     // now add button to delete tasks but use the screen-controller module
 
     let deleteTaskBtn = document.querySelector(`[data-task-id-btn-delete="${taskId}"]`)
@@ -56,3 +68,4 @@ export function createFormFromTask(taskId) {
         clearThisTaskFromTheScreen(taskFormWrapper, newTaskForm)        
     })
 }
+
