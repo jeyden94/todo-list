@@ -1,13 +1,9 @@
 import { updateThisTaskInLocalStorage } from "./update-cards.js"
 import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
 
-
 export function createUpdateTaskBtn(newTask, source) {
 
-    // const thisTask = JSON.parse(localStorage.getItem(taskId));
-
-
-    let updateTaskBtn = document.querySelector(`[data-task-id-btn="${newTask.uniqueTaskId}"]`)
+    let updateTaskBtn = document.querySelector(`[data-task-id-btn-${source}="${newTask.uniqueTaskId}"]`)
     
     updateTaskBtn.addEventListener("click", () => {
         let taskTitle = document.getElementById(`title-${newTask.uniqueTaskId}`).value;
@@ -19,22 +15,19 @@ export function createUpdateTaskBtn(newTask, source) {
         if (source === "new") {
             newTask.storeLocally()
             updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
-            clearThisTaskFromTheScreen(newTask)        
+            clearThisTaskFromTheScreen(newTask, source)        
         } else {
             updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
         }
-
-        // Create functionality to route changes to the tasks form to local storage AND update the DOM
     })
 }
 
-export function createDeleteTaskBtn(taskId) {
+export function createDeleteTaskBtn(newTask, source) {
 
-    let deleteTaskBtn = document.querySelector(`[data-task-id-btn-delete="${taskId}"]`)
-
+    const deleteTaskBtn = document.querySelector(`[data-task-id-btn-delete-${source}="${newTask.uniqueTaskId}"]`);
     deleteTaskBtn.addEventListener("click", () => {
-        deleteThisTaskFromLocalStorage(taskId)
-        clearThisTaskFromTheScreen(taskFormWrapper, newTaskForm)        
-    })
+        deleteThisTaskFromLocalStorage(newTask.uniqueTaskId)
+        clearThisTaskFromTheScreen(newTask, source)       
+    });
 
 }

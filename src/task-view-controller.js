@@ -17,8 +17,8 @@ function removeAllChildNodes(parentNode) {
     }
 }
 
-function showAllTasks() {
-    
+export function showAllTasks() {
+
     removeAllChildNodes(taskViewWrapperParent)
 
     const source = "all" // Should be only hard-coded element
@@ -35,7 +35,9 @@ function showAllTasks() {
 
         console.log(key)
 
-        createFormFromTask(key, source)
+        let selectedTask = JSON.parse(localStorage.getItem(key))
+
+        createFormFromTask(selectedTask, source)
 
     }
 
