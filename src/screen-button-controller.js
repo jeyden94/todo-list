@@ -1,6 +1,6 @@
 import { updateThisTaskInLocalStorage } from "./update-cards.js"
 import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
-import { currentView, showAllTasks } from "./task-view-controller.js"
+import { currentView, showAllTasks, showKanbanView } from "./task-view-controller.js"
 
 export function createUpdateTaskBtn(newTask, source) {
 
@@ -23,6 +23,8 @@ export function createUpdateTaskBtn(newTask, source) {
 
         if (currentView === "all") {
             showAllTasks()
+        } else if (currentView === "kanban") {
+            showKanbanView()
         }
 
     })
@@ -34,10 +36,12 @@ export function createDeleteTaskBtn(newTask, source) {
     deleteTaskBtn.addEventListener("click", () => {
         deleteThisTaskFromLocalStorage(newTask.uniqueTaskId)
         clearThisTaskFromTheScreen(newTask, source)     
-        
+
         if (currentView === "all") {
             showAllTasks()
-        }  
+        } else if (currentView === "kanban") {
+            showKanbanView()
+        }
     });
 
 

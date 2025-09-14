@@ -51,11 +51,11 @@ export function showAllTasks() {
 
 }
 
-function showKanbanView() {
+export function showKanbanView() {
 
     removeAllChildNodes(taskViewWrapperParent)
 
-    const source = "kanban" // Should be only hard-coded element
+    let source = "kanban" // Should be only hard-coded element
 
     const kanbanViewFormWrapper = document.createElement("div")
     kanbanViewFormWrapper.classList.add(`kanban-view-wrapper`)
@@ -67,21 +67,26 @@ function showKanbanView() {
     for (let i = 0; i < 7; i++) {
         const kanbanCardWrapper = document.createElement("div")
 
-        kanbanCardWrapper.classList.add(`task-form-wrapper-${source}`)
+        // kanbanCardWrapper.classList.add(`task-form-wrapper-${source}`)
         // kanbanCardWrapper.classList.add(`kanban-card-wrapper`)
 
         const now = new Date();
         const screenDateFormat = "eeee";
         const localStorageDateFormat = "yyyy-MM-dd"
 
-        const date = format(add((now), {days: i}), screenDateFormat);
+        const screenDate = format(add((now), {days: i}), screenDateFormat);
+        const htmlDate = format(add((now), {days: i}), localStorageDateFormat)
 
-        kanbanCardWrapper.setAttribute(`date`, `${date}`)
+        source += `-${htmlDate}`
+        console.log(source)
+        kanbanCardWrapper.classList.add(`task-form-wrapper-${source}`)
+
+        kanbanCardWrapper.setAttribute(`date`, `${htmlDate}`)
 
         kanbanViewFormWrapper.appendChild(kanbanCardWrapper)
 
         const kanbandCardTitle = document.createElement("h1")
-        kanbandCardTitle.textContent = `${date}`
+        kanbandCardTitle.textContent = `${screenDate}`
         kanbanCardWrapper.appendChild(kanbandCardTitle)
 
         for (let j = 0; j < localStorage.length; j++) {
@@ -92,10 +97,13 @@ function showKanbanView() {
             let selectedTask = JSON.parse(localStorage.getItem(key))
             
             if (selectedTask.dueDate === format(add((now), {days: i}), localStorageDateFormat)) {
+                
+                console.log(format(add((now), {days: i}), localStorageDateFormat))
                 createFormFromTask(selectedTask, source)
             }
-       
-    }
+        }
+        source = "kanban";
     }
 
+    currentView = source;
 }
