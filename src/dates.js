@@ -1,7 +1,7 @@
 import { format, addDays } from 'date-fns';
 
 const now = new Date();
-const taskFormat = "yyyy-MM-dd";
+const taskFormat = "eeee";
 
 export const formattedDate = format(now, taskFormat);
 console.log(formattedDate);

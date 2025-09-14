@@ -1,4 +1,6 @@
+import { toDate } from "date-fns/fp";
 import { createFormFromTask } from "./show-task-as-form"
+import { format, add } from 'date-fns';
 
 // View buttons
 
@@ -9,7 +11,9 @@ export const showCalendarViewButton = document.querySelector(".show-calendar-btn
 export let currentView = "";
 
 const taskViewWrapperParent = document.querySelector(".task-view")
+
 showAllTasksButton.addEventListener("click", showAllTasks)
+showKanbanViewButton.addEventListener("click", showKanbanView)
 
 // Helper function to clear screen
 
@@ -43,7 +47,55 @@ export function showAllTasks() {
 
     }
 
-    return currentView = source;
+    currentView = source;
 
 }
 
+function showKanbanView() {
+
+    removeAllChildNodes(taskViewWrapperParent)
+
+    const source = "kanban" // Should be only hard-coded element
+
+    const kanbanViewFormWrapper = document.createElement("div")
+    kanbanViewFormWrapper.classList.add(`kanban-view-wrapper`)
+    // kanbanViewFormWrapper.classList.add(`task-form-wrapper-${source}`)
+
+    taskViewWrapperParent.appendChild(kanbanViewFormWrapper)
+
+    // Create 7 Kanban Cards with date attributes
+    for (let i = 0; i < 7; i++) {
+        const kanbanCardWrapper = document.createElement("div")
+
+        kanbanCardWrapper.classList.add(`task-form-wrapper-${source}`)
+        // kanbanCardWrapper.classList.add(`kanban-card-wrapper`)
+
+        const now = new Date();
+        const screenDateFormat = "eeee";
+        const localStorageDateFormat = "yyyy-MM-dd"
+
+        const date = format(add((now), {days: i}), screenDateFormat);
+
+        kanbanCardWrapper.setAttribute(`date`, `${date}`)
+
+        kanbanViewFormWrapper.appendChild(kanbanCardWrapper)
+
+        const kanbandCardTitle = document.createElement("h1")
+        kanbandCardTitle.textContent = `${date}`
+        kanbanCardWrapper.appendChild(kanbandCardTitle)
+
+        for (let j = 0; j < localStorage.length; j++) {
+            const key = localStorage.key(j)
+
+            if (key === "debug") { continue }
+
+            let selectedTask = JSON.parse(localStorage.getItem(key))
+            
+            if (selectedTask.dueDate === format(add((now), {days: i}), localStorageDateFormat)) {
+                createFormFromTask(selectedTask, source)
+            }
+       
+    }
+    }
+
+}

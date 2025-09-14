@@ -1,5 +1,4 @@
 import { createDeleteTaskBtn, createUpdateTaskBtn } from "./screen-button-controller.js";
-import { formattedDate } from "./dates.js";
 
 export function createFormFromTask(newTask, source) {
 
@@ -30,10 +29,10 @@ export function createFormFromTask(newTask, source) {
         <button>
             <selectedcontent></selectedcontent>
         </button>
-        <option value="">Select Priority Level</option>
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
+        <option class="default-priority" value="">Select Priority Level</option>
+        <option class="low-priority" value="low">Low</option>
+        <option class="medium-priority" value="medium">Medium</option>
+        <option class="high-priority" value="high">High</option>
     </select>
 
     <label for="project">Project</label>

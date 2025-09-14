@@ -1,7 +1,7 @@
 body {
   background-color: rebeccapurple;
   display: grid;
-  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-columns: 1fr 4fr 1.5fr;
   justify-content: center;
 
   background: radial-gradient(circle, #22499C, #00277A 50vh);
@@ -14,6 +14,11 @@ body {
   gap: 10px;
 }
 
+h1 {
+  font-size: 20px;
+  text-align: center;
+}
+
 .task-view {
   height: 95vh;
   border: 1px solid red;
@@ -24,11 +29,20 @@ body {
   grid-template-columns: 1fr 1fr 1fr;
 }
 
-.kanban-wrapper {
+.kanban-view-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   height: 100%;
-  /* debug */
+  gap: 15px;
+  padding: 20px;
+}
+
+.task-form-wrapper-kanban {
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100%;
+  gap: 15px;
+  padding: 20px;
 }
 
 .kanban-section {
@@ -116,8 +130,6 @@ body {
 /* FORM STYLING */
 
 form {
-
-  /* From https://css.glass */
   background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -126,28 +138,95 @@ form {
   border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 20px;
   margin: 10px;
-  gap: 4px;
+  gap: 8px;
   display: grid;
   justify-content: center;
   grid-template-columns: 1fr 1fr;
 }
 
-  form:hover{
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.12);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(11.5px);
-  -webkit-backdrop-filter: blur(11.5px);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  form > input,
+  form > textarea {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: none;
   }
 
-  form > input,
-  form > input,
-  form > input {
-    background-color: black;
+  form > input:hover,
+  form > textarea:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 2px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(11.5px);
+    -webkit-backdrop-filter: blur(11.5px);
+    border: none;
   }
-
 
 
   
+/* Select Dropdowns */
+
+select,
+::picker(select) {
+    appearance: base-select;
+    border: none;
+}
+
+select::picker-icon {
+    display: none;
+}
+
+select:open::picker-icon {
+    rotate: 180deg;
+}
+
+::picker(select) {
+    border: none;
+}
+
+option {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    color: white;
+
+    /* border: 2px solid #ddd; */
+    /* background: #3e69b8; */
+    padding: 10px 20px 10px 10px;
+    transition: 0.4s;
+}
+
+option:not(option:last-of-type) {
+    border-bottom: none;
+}
+
+/* option:nth-of-type(odd) {
+    background: #3e69b8ee;
+} */
+
+option:hover,
+option:focus {
+    background: rgb(216, 193, 91);
+}
+
+option:checked {
+    font-weight: 200;
+}
+
+.default-priority {
+  background: none;
+}
+
+.low-priority {
+  background: rgb(43, 43, 234);
+}
+
+.medium-priority {
+  background: rgb(236, 121, 38);
+}
+
+.high-priority {
+  background: rgb(240, 59, 59);
+}

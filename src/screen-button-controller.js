@@ -21,7 +21,7 @@ export function createUpdateTaskBtn(newTask, source) {
             updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
         }
 
-        if (currentView === "" || currentView === "all") {
+        if (currentView === "all") {
             showAllTasks()
         }
 
@@ -33,7 +33,13 @@ export function createDeleteTaskBtn(newTask, source) {
     const deleteTaskBtn = document.querySelector(`[data-task-id-btn-delete-${source}="${newTask.uniqueTaskId}"]`);
     deleteTaskBtn.addEventListener("click", () => {
         deleteThisTaskFromLocalStorage(newTask.uniqueTaskId)
-        clearThisTaskFromTheScreen(newTask, source)       
+        clearThisTaskFromTheScreen(newTask, source)     
+        
+        if (currentView === "all") {
+            showAllTasks()
+        }  
     });
+
+
 
 }
