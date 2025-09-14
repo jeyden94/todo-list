@@ -6,7 +6,6 @@ import { format, add } from 'date-fns';
 
 export const showAllTasksButton = document.querySelector(".show-all-btn")
 export const showKanbanViewButton = document.querySelector(".show-kanban-btn")
-export const showCalendarViewButton = document.querySelector(".show-calendar-btn")
 
 export let currentView = "";
 
@@ -59,16 +58,11 @@ export function showKanbanView() {
 
     const kanbanViewFormWrapper = document.createElement("div")
     kanbanViewFormWrapper.classList.add(`kanban-view-wrapper`)
-    // kanbanViewFormWrapper.classList.add(`task-form-wrapper-${source}`)
 
     taskViewWrapperParent.appendChild(kanbanViewFormWrapper)
 
-    // Create 7 Kanban Cards with date attributes
     for (let i = 0; i < 7; i++) {
         const kanbanCardWrapper = document.createElement("div")
-
-        // kanbanCardWrapper.classList.add(`task-form-wrapper-${source}`)
-        // kanbanCardWrapper.classList.add(`kanban-card-wrapper`)
 
         const now = new Date();
         const screenDateFormat = "eeee";

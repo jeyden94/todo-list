@@ -1,7 +1,6 @@
 body {
-  background-color: rebeccapurple;
   display: grid;
-  grid-template-columns: 1fr 4fr 1.5fr;
+  grid-template-columns: 1fr 3fr 1fr;
   justify-content: center;
 
   background: radial-gradient(circle, #22499C, #00277A 50vh);
@@ -20,13 +19,17 @@ h1 {
 }
 
 .task-view {
-  height: 95vh;
-  border: 1px solid red;
+  display: grid;
+  align-self: baseline;
 }
 
 .task-form-wrapper-all {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.task-form-wrapper-all > * {
+  height: 300px;
 }
 
 .kanban-view-wrapper {
@@ -49,20 +52,26 @@ h1 {
   border: 1px solid green;
 }
 
+.create-wrapper,
 .view-wrapper {
   display: grid;
-  height: 95vh;
-  border: 1px solid red;
+  align-self: baseline;
 }
-
-.create-wrapper {
-  display: grid;
-  height: 95vh;
-  border: 1px solid red;
-}
-
 
 /* Buttons */
+
+
+.update-task-btn,
+.delete-task-btn,
+.complete-task-btn {
+    color: white;
+    width:100%;
+    position: relative;
+    place-self: center;
+    align-items: center;
+    appearance: none;
+    border: 0;
+}
 
 .btn-wrapper {
   display: grid;
@@ -71,11 +80,10 @@ h1 {
 }
 
 #new-task-btn,
-#new-project-btn,
 .show-all-btn,
 .show-kanban-btn,
 .show-calendar-btn {
-    margin-top: 50px;
+    width:100%;
     position: relative;
     place-self: center;
     align-items: center;
@@ -105,11 +113,10 @@ h1 {
     touch-action: manipulation;
     white-space: nowrap;
     will-change: box-shadow,transform;
-    font-size: 18px; 
+    font-size: 14px; 
 }
 
 #new-task-btn:hover, 
-#new-project-btn:hover,
 .show-all-btn:hover,
 .show-kanban-btn:hover,
 .show-calendar-btn:hover  {
@@ -118,7 +125,6 @@ h1 {
 }
 
 #new-task-btn:active,
-#new-project-btn:active,
 .show-all-btn:active,
 .show-kanban-btn:active,
 .show-calendar-btn:active  {
@@ -130,41 +136,53 @@ h1 {
 /* FORM STYLING */
 
 form {
-  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  width: clamp(100px, 150px, 2fr);
+  background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  font-size: 12px;
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 20px;
+  padding: 10px;
   margin: 10px;
   gap: 8px;
   display: grid;
   justify-content: center;
-  grid-template-columns: 1fr 1fr;
 }
 
-  form > input,
-  form > textarea {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: none;
-  }
+textarea {
+  width: 1fr;
+  height: 50px;
+  resize: none;
+  color: white;
+}
 
-  form > input:hover,
-  form > textarea:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-radius: 2px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(11.5px);
-    -webkit-backdrop-filter: blur(11.5px);
-    border: none;
-  }
+form > input,
+form > textarea {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: none;
+}
 
+form > input:hover,
+form > textarea:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border: none;
+}
 
+input[type="text"],
+input[type="date"] {
+  color: white;
+}
   
 /* Select Dropdowns */
 
@@ -191,9 +209,7 @@ option {
     justify-content: flex-start;
     gap: 10px;
     color: white;
-
-    /* border: 2px solid #ddd; */
-    /* background: #3e69b8; */
+    text-align: center;
     padding: 10px 20px 10px 10px;
     transition: 0.4s;
 }
@@ -202,17 +218,9 @@ option:not(option:last-of-type) {
     border-bottom: none;
 }
 
-/* option:nth-of-type(odd) {
-    background: #3e69b8ee;
-} */
-
 option:hover,
 option:focus {
     background: rgb(216, 193, 91);
-}
-
-option:checked {
-    font-weight: 200;
 }
 
 .default-priority {

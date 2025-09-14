@@ -11,14 +11,13 @@ export function createUpdateTaskBtn(newTask, source) {
         let taskDescription = document.getElementById(`description-${newTask.uniqueTaskId}`).value;
         let taskDueDate = document.getElementById(`due-date-${newTask.uniqueTaskId}`).value;
         let taskPriority = document.getElementById(`priority-${newTask.uniqueTaskId}`).value;
-        let taskProject = document.getElementById(`project-${newTask.uniqueTaskId}`).value;
 
         if (source === "new") {
             newTask.storeLocally()
-            updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
+            updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority)
             clearThisTaskFromTheScreen(newTask, source)        
         } else {
-            updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
+            updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority)
         }
 
         if (currentView === "all") {

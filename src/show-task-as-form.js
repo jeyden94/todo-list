@@ -15,16 +15,12 @@ export function createFormFromTask(newTask, source) {
 
     newTaskForm.innerHTML = `
 
-    <label for="title">Title</label>
     <input type="text" id="title-${taskId}" value="${newTask.title}">
 
-    <label for="description">Task Description</label>
     <textarea id="description-${taskId}" value="${newTask.description}"></textarea>
 
-    <label for="due-date">Due Date</label>
     <input type="date" id="due-date-${taskId}" value="${newTask.dueDate}">
 
-    <label for="priority">Priority</label>
     <select id="priority-${taskId}" name="priority">
         <button>
             <selectedcontent></selectedcontent>
@@ -33,15 +29,6 @@ export function createFormFromTask(newTask, source) {
         <option class="low-priority" value="low">Low</option>
         <option class="medium-priority" value="medium">Medium</option>
         <option class="high-priority" value="high">High</option>
-    </select>
-
-    <label for="project">Project</label>
-    <select id="project-${taskId}" name="project">
-        <button>
-            <selectedcontent></selectedcontent>
-        </button>
-        <option value="">Select Project</option>
-        <option value="test-project">Test</option>
     </select>`
 
     if (source === "new") {

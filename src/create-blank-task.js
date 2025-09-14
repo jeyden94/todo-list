@@ -8,7 +8,7 @@ export const createNewTask = newTaskBtn.addEventListener("click", createBlankTas
 const source = "new"
 
 function createBlankTask() {
-    const newTask = new Task("", "", "", formattedDate, "");
+    const newTask = new Task("Task...", "Details...", "", formattedDate);
     console.log(newTask.uniqueTaskId)
     createFormFromTask(newTask, source)
 }
