@@ -1,5 +1,6 @@
 import { updateThisTaskInLocalStorage } from "./update-cards.js"
 import { deleteThisTaskFromLocalStorage, clearThisTaskFromTheScreen } from "./delete-cards.js"
+import { currentView, showAllTasks } from "./task-view-controller.js"
 
 export function createUpdateTaskBtn(newTask, source) {
 
@@ -19,6 +20,11 @@ export function createUpdateTaskBtn(newTask, source) {
         } else {
             updateThisTaskInLocalStorage(newTask.uniqueTaskId, taskTitle, taskDescription, taskDueDate, taskPriority, taskProject)
         }
+
+        if (currentView === "" || currentView === "all") {
+            showAllTasks()
+        }
+
     })
 }
 

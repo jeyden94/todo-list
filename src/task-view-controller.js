@@ -2,9 +2,11 @@ import { createFormFromTask } from "./show-task-as-form"
 
 // View buttons
 
-export const showAllTasksButton = document.querySelector(".show-all")
-export const showKanbanViewButton = document.querySelector(".show-kanban")
-export const showCalendarViewButton = document.querySelector(".show-calendar")
+export const showAllTasksButton = document.querySelector(".show-all-btn")
+export const showKanbanViewButton = document.querySelector(".show-kanban-btn")
+export const showCalendarViewButton = document.querySelector(".show-calendar-btn")
+
+export let currentView = "";
 
 const taskViewWrapperParent = document.querySelector(".task-view")
 showAllTasksButton.addEventListener("click", showAllTasks)
@@ -40,6 +42,8 @@ export function showAllTasks() {
         createFormFromTask(selectedTask, source)
 
     }
+
+    return currentView = source;
 
 }
 

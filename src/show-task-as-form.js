@@ -23,7 +23,7 @@ export function createFormFromTask(newTask, source) {
     <textarea id="description-${taskId}" value="${newTask.description}"></textarea>
 
     <label for="due-date">Due Date</label>
-    <input type="date" id="due-date-${taskId}">
+    <input type="date" id="due-date-${taskId}" value="${newTask.dueDate}">
 
     <label for="priority">Priority</label>
     <select id="priority-${taskId}" name="priority">
@@ -43,10 +43,18 @@ export function createFormFromTask(newTask, source) {
         </button>
         <option value="">Select Project</option>
         <option value="test-project">Test</option>
-    </select>
+    </select>`
 
-    <input data-task-id-btn-${source}="${taskId}" class="update-task-btn" type="button" value="Update Task">
-    <input data-task-id-btn-delete-${source}="${taskId}" class="delete-task-btn" type="button" value="Delete">`
+    if (source === "new") {
+        newTaskForm.innerHTML += `
+        <input data-task-id-btn-${source}="${taskId}" class="update-task-btn" type="button" value="Create">
+        <input data-task-id-btn-delete-${source}="${taskId}" class="delete-task-btn" type="button" value="Delete">`
+    } else {
+        newTaskForm.innerHTML += `
+        <input data-task-id-btn-${source}="${taskId}" class="update-task-btn" type="button" value="Update">
+        <input data-task-id-btn-delete-${source}="${taskId}" class="delete-task-btn" type="button" value="Delete">
+        <input data-task-id-btn-complete-${source}="${taskId}" class="complete-task-btn" type="button" value="Complete">`
+    }
 
     taskFormWrapper.appendChild(newTaskForm)
     taskFormParent.appendChild(taskFormWrapper)

@@ -19,6 +19,11 @@ body {
   border: 1px solid red;
 }
 
+.task-form-wrapper-all {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .kanban-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -51,7 +56,11 @@ body {
   gap: 50px;
 }
 
-#new-task-btn {
+#new-task-btn,
+#new-project-btn,
+.show-all-btn,
+.show-kanban-btn,
+.show-calendar-btn {
     margin-top: 50px;
     position: relative;
     place-self: center;
@@ -85,64 +94,60 @@ body {
     font-size: 18px; 
 }
 
-#new-task-btn:hover {
+#new-task-btn:hover, 
+#new-project-btn:hover,
+.show-all-btn:hover,
+.show-kanban-btn:hover,
+.show-calendar-btn:hover  {
   box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
   transform: translateY(-2px);
 }
 
-#new-task-btn:active {
+#new-task-btn:active,
+#new-project-btn:active,
+.show-all-btn:active,
+.show-kanban-btn:active,
+.show-calendar-btn:active  {
   box-shadow: #3c4fe0 0 3px 7px inset;
   transform: translateY(2px);
 }
 
-#new-project-btn {
-    margin-top: 50px;
-    position: relative;
-    place-self: center;
-    align-items: center;
-    appearance: none;
-    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-    border: 0;
-    border-radius: 6px;
-    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-flex;
-    font-family: "JetBrains Mono",monospace;
-    height: 42px;
-    justify-content: center;
-    line-height: 1;
-    list-style: none;
-    overflow: hidden;
-    padding-left: 16px;
-    padding-right: 16px;
-    position: relative;
-    text-align: left;
-    text-decoration: none;
-    transition: box-shadow .15s,transform .15s;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    will-change: box-shadow,transform;
-    font-size: 18px; 
-}
 
-#new-project-btn:hover {
-  box-shadow: rgba(45, 35, 66, .4) 0 4px 8px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
-  transform: translateY(-2px);
-}
-
-#new-project-btn:active {
-  box-shadow: #3c4fe0 0 3px 7px inset;
-  transform: translateY(2px);
-}
-
+/* FORM STYLING */
 
 form {
-  margin-top: 20px;
+
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  margin: 10px;
+  gap: 4px;
   display: grid;
-  max-width: 20vw;
   justify-content: center;
+  grid-template-columns: 1fr 1fr;
 }
+
+  form:hover{
+  /* From https://css.glass */
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(11.5px);
+  -webkit-backdrop-filter: blur(11.5px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  }
+
+  form > input,
+  form > input,
+  form > input {
+    background-color: black;
+  }
+
+
+
+  
