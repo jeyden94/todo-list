@@ -11,16 +11,20 @@ body {
   
   align-items: center;
   gap: 10px;
+  margin: 0;
 }
 
 h1 {
   font-size: 20px;
-  text-align: center;
+  width: 8vw;
+  text-align: left;
 }
 
 .task-view {
   display: grid;
   align-self: baseline;
+  padding: 0px;
+  width: 75vw;
 }
 
 .task-form-wrapper-all {
@@ -34,10 +38,32 @@ h1 {
 
 .kanban-view-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  height: 100%;
-  gap: 15px;
-  padding: 20px;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  height: 95vh;
+  gap: 0px;
+}
+
+.kanban-card {
+  padding: 0px 20px 0px;
+}
+
+.kanban-view-wrapper > form {
+  background: blue;
+}
+
+.kanban-card {
+  display: grid;
+  grid-auto-flow: column;
+  border-top: 1px solid white;
+  align-items: baseline;
+}
+
+.kanban-card:first-of-type {
+  padding-top: 0;
+}
+
+.kanban-card:last-of-type {
+  padding-bottom: 0;
 }
 
 .task-form-wrapper-kanban {
@@ -46,10 +72,6 @@ h1 {
   height: 100%;
   gap: 15px;
   padding: 20px;
-}
-
-.kanban-section {
-  border: 1px solid green;
 }
 
 .create-wrapper,

@@ -73,6 +73,8 @@ export function showKanbanView() {
 
         source += `-${htmlDate}`
         console.log(source)
+
+        kanbanCardWrapper.classList.add(`kanban-card`)
         kanbanCardWrapper.classList.add(`task-form-wrapper-${source}`)
 
         kanbanCardWrapper.setAttribute(`date`, `${htmlDate}`)
@@ -80,7 +82,15 @@ export function showKanbanView() {
         kanbanViewFormWrapper.appendChild(kanbanCardWrapper)
 
         const kanbandCardTitle = document.createElement("h1")
-        kanbandCardTitle.textContent = `${screenDate}`
+
+        if (i === 0) {
+            kanbandCardTitle.textContent = `Today`
+        } else if (i === 1) {
+            kanbandCardTitle.textContent = `Tomorrow`
+        } else {
+           kanbandCardTitle.textContent = `${screenDate}` 
+        }
+
         kanbanCardWrapper.appendChild(kanbandCardTitle)
 
         for (let j = 0; j < localStorage.length; j++) {
